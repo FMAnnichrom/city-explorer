@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India's Cuisines & Festivals</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        /* Keyframes for the particle animation */
+        @keyframes animate-particles {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100vh); }
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Particle Animation Styles */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 200vh;
+            top: 0;
+            left: 0;
+        }
+        #particles-1 {
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0.5px, transparent 1px);
+            background-size: 2rem 2rem;
+            animation: animate-particles 40s linear infinite;
+        }
+        #particles-2 {
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0.5px, transparent 1px);
+            background-size: 3.5rem 3.5rem;
+            animation: animate-particles 30s linear infinite;
+        }
+        #particles-3 {
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1.5px);
+            background-size: 5rem 5rem;
+            animation: animate-particles 20s linear infinite;
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* New rule to style the link wrapper */
+        .card-link-wrapper {
+            text-decoration: none;
+            color: inherit;
+            display: block; /* Ensures the link takes up the full grid space */
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #555;
+            padding-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .item-card {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid #333;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 100%; /* Ensures cards in a row have the same height */
+        }
+
+        .card-link-wrapper:hover .item-card {
+            transform: translateY(-8px);
+            border-color: #555;
+        }
+
+        .item-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .item-card-content {
+            padding: 1.5rem;
+        }
+
+        .item-card h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .item-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #a0a0a0;
+        }
+
+        /* Back Button Styles */
+        .back-link-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .back-link {
+            background: #333;
+            color: #e0e0e0;
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid #555;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            background-color: #f4f4f4;
+            color: #121212;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div id="particles-1" class="particles"></div>
+        <div id="particles-2" class="particles"></div>
+        <div id="particles-3" class="particles"></div>
+    </div>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>India's Cuisines & Festivals</h1>
+            <p>Explore the rich tapestry of India's culinary delights and vibrant festivals. From spicy street foods to sweet treats, discover the flavors and celebrations that define a culture.</p>
+        </header>
+
+        <section id="cuisines">
+            <h2 class="section-title">Famous Cuisines of India</h2>
+            <div class="grid">
+                <a href="https://en.wikipedia.org/wiki/North_Indian_cuisine" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="food images/image.png" alt="North Indian Thali">
+                        <div class="item-card-content">
+                            <h3>North Indian</h3>
+                            <p>Known for its rich curries, tandoori meats, and breads like naan and roti. Dishes like Butter Chicken and Paneer Tikka are world-famous.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/South_Indian_cuisine" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="food images/south.png" alt="South Indian Dosa">
+                        <div class="item-card-content">
+                            <h3>South Indian</h3>
+                            <p>Characterized by the use of rice, lentils, and coconut. Famous for dishes like Dosa, Idli, and Sambar, offering a perfect balance of flavors.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Bengali_cuisine" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="food images/bengali.png"Bengali Fish Curry">
+                        <div class="item-card-content">
+                            <h3>Bengali</h3>
+                            <p>Celebrated for its subtle yet spicy flavors, with a prominent use of fish and mustard oil. Sweets like Rosogolla are iconic desserts.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Rajasthani_cuisine" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="food images/rajasthani.png" alt="Rajasthani Thali">
+                        <div class="item-card-content">
+                            <h3>Rajasthani</h3>
+                            <p>A rich cuisine shaped by its arid climate. Famous for spicy dishes like Laal Maas and the iconic Dal Baati Churma platter.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Punjabi_cuisine" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="food images/panjabi.png" alt="Punjabi food including Chole Bhature">
+                        <div class="item-card-content">
+                            <h3>Punjabi</h3>
+                            <p>Hearty and flavorful, Punjabi food is a favorite across the globe. Known for Sarson da Saag, Makki di Roti, and tandoori dishes.</p>
+                        </div>
+                    </div>
+                </a>
+                 <a href="https://en.wikipedia.org/wiki/Gujarati_cuisine" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="food images/gujarati.png" alt="Gujarati Thali with various dishes">
+                        <div class="item-card-content">
+                            <h3>Gujarati</h3>
+                            <p>Primarily vegetarian, this cuisine offers a unique blend of sweet, spicy, and savory flavors. Dhokla, Thepla, and Undhiyu are popular dishes.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="festivals">
+            <h2 class="section-title">Vibrant Festivals of India</h2>
+            <div class="grid">
+                <a href="https://en.wikipedia.org/wiki/Diwali" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="festive/diwali.png" alt="People celebrating Diwali with lights">
+                        <div class="item-card-content">
+                            <h3>Diwali</h3>
+                            <p>The "Festival of Lights," symbolizing the victory of light over darkness. Celebrated with lamps, fireworks, and the exchange of sweets.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Holi" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="festive/holi.png" alt="People playing with colored powders during Holi">
+                        <div class="item-card-content">
+                            <h3>Holi</h3>
+                            <p>The "Festival of Colors," marking the arrival of spring. A joyous day where people play with colored powders and water, sing, and dance.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Eid_al-Fitr" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="festive/eid.png" alt="A mosque decorated for Eid">
+                        <div class="item-card-content">
+                            <h3>Eid</h3>
+                            <p>Marking the end of Ramadan, Eid al-Fitr is a festival of prayers, charity, and feasting. Families gather to share special meals.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Navaratri" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="festive/navr.png" alt="Dandia dance during Navaratri">
+                        <div class="item-card-content">
+                            <h3>Navaratri</h3>
+                            <p>A nine-night festival celebrating the goddess Durga. It's marked by fasting, prayer, and energetic Garba and Dandiya Raas dances.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Ganesh_Chaturthi" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="festive/ganeshji.png" alt="An idol of Lord Ganesha for Ganesh Chaturthi">
+                        <div class="item-card-content">
+                            <h3>Ganesh Chaturthi</h3>
+                            <p>A grand festival celebrating the birth of Lord Ganesha. Elaborate idols are worshipped for ten days and then immersed in water.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Onam" target="_blank" class="card-link-wrapper">
+                    <div class="item-card">
+                        <img src="festive/onam.png" alt="A flower carpet (Pookalam) for the festival of Onam">
+                        <div class="item-card-content">
+                            <h3>Onam</h3>
+                            <p>A major harvest festival from Kerala celebrating the return of King Mahabali. Marked by the Onam Sadhya feast and floral carpet designs.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="back-link-container">
+            <a href="city explorerUI.html" class="back-link">Back to City Explorer UI</a>
+        </div>
+    </div>
+
+</body>
+</html>
