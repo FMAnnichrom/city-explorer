@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Explorer - Dark Theme</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <title>City Explorer - A Visual Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Keyframes for the smoother fade-in animation */
-        @keyframes appear {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(30px) scale(0.95);
             }
             to {
                 opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
-        
-        /* Keyframes for the particle animation */
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         @keyframes animate-particles {
             from { transform: translateY(0); }
             to { transform: translateY(-100vh); }
@@ -24,13 +33,19 @@
 
         body {
             margin: 0;
-            font-family: 'Montserrat', Arial, sans-serif;
-            background: #121212;
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
             color: #e0e0e0;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Particle Animation Styles */
+        .fade-in-element {
+            opacity: 0;
+            animation: fadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
         .bg-animation {
             position: fixed;
             top: 0;
@@ -38,7 +53,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            animation: appear 3s ease-out; /* Fade in the background */
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
         }
         .particles {
             position: absolute;
@@ -48,97 +63,95 @@
             left: 0;
         }
         #particles-1 {
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0.5px, transparent 1px);
-            background-size: 2rem 2rem;
-            animation: animate-particles 40s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1.5px);
+            background-size: 3rem 3rem;
+            animation: animate-particles 50s linear infinite;
         }
         #particles-2 {
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0.5px, transparent 1px);
-            background-size: 3.5rem 3.5rem;
-            animation: animate-particles 30s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1.5px);
+            background-size: 5rem 5rem;
+            animation: animate-particles 35s linear infinite;
         }
         #particles-3 {
-            background: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1.5px);
-            background-size: 5rem 5rem;
-            animation: animate-particles 20s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 2px);
+            background-size: 7rem 7rem;
+            animation: animate-particles 25s linear infinite;
         }
 
         .site-header {
             text-align: center;
-            padding: 2rem 1rem 1rem 1rem;
-            background: #1c1c1c;
+            padding: 4rem 1rem;
             color: #fff;
-            border-bottom: 1px solid #333;
         }
         .site-header h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            animation: float 6s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
         .site-header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin: 0;
             color: #a0a0a0;
+            font-weight: 300;
         }
+
         .city-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
+
         .city-card {
-            /* Smoother fade-in animation on scroll */
-            animation: appear 1s linear;
-            animation-timeline: view();
-            animation-range: entry 0% cover 40%;
-            transform: translateY(0);
-            
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(5px);
-            border-radius: 1.2rem;
-            border: 1px solid #333;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid #222;
             overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
             position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            will-change: transform;
         }
         .city-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            border-color: #555;
+            transform: translateY(-10px) scale(1.03);
+            border-color: #888;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(136, 136, 136, 0.3);
+            z-index: 10;
         }
+
         .image-gallery {
             display: flex;
-            height: 200px;
-            background-color: #2b2b2b;
+            height: 220px;
+            background-color: #1e1e1e;
         }
         .image-gallery a {
             display: block;
             width: 33.333%;
             height: 100%;
-            transition: transform 0.3s ease;
-            border-left: 1px solid #121212;
-        }
-        .image-gallery a:first-child {
-            border-left: none;
+            overflow: hidden;
         }
         .image-gallery img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
+            filter: grayscale(80%) brightness(0.8);
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
         .city-card:hover .image-gallery img {
-            filter: grayscale(0%);
+            filter: grayscale(0%) brightness(1);
         }
-        .image-gallery a:hover {
-            transform: scale(1.1);
-            z-index: 10;
+        .image-gallery a:hover img {
+            transform: scale(1.15);
         }
+
         .card-content {
             padding: 1.5rem;
             flex: 1;
@@ -146,85 +159,87 @@
             flex-direction: column;
         }
         .card-content h2 {
-            margin: 0 0 0.7rem 0;
-            font-size: 1.4rem;
+            margin: 0 0 0.8rem 0;
+            font-size: 1.6rem;
             color: #ffffff;
+            font-weight: 600;
         }
         .card-content p {
             font-size: 1rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
             flex-grow: 1;
+            color: #c0c0c0;
         }
+        .card-content strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
         .download-btn {
             align-self: flex-start;
-            background: #333;
+            background: linear-gradient(45deg, #4a4a4a, #333);
             color: #e0e0e0;
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 1px;
             border: 1px solid #555;
-            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-        }
-        .download-btn:visited {
-            color: #e0e0e0;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .download-btn:hover {
-            transform: translateY(-2px);
-            background-color: #f4f4f4;
+            transform: translateY(-3px) scale(1.05);
+            background: #fff;
             color: #121212;
+            box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
         }
+        
         .back-link-container {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 1rem;
         }
         .back-link {
             display: inline-block;
-            background: #333;
+            background: #222;
             color: #e0e0e0;
-            padding: 0.8rem 1.5rem;
-            border-radius: 2rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            border: 1px solid #555;
-            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
         }
         .back-link:hover {
-            transform: translateY(-2px);
-            background-color: #f4f4f4;
+            transform: translateY(-3px) scale(1.05);
+            background-color: #fff;
             color: #121212;
+            box-shadow: 0 8px 15px rgba(255,255,255,0.2);
         }
 
     </style>
 </head>
 <body>
     
-    <div class="bg-animation">
+    <div class="bg-animation fade-in-element">
         <div id="particles-1" class="particles"></div>
         <div id="particles-2" class="particles"></div>
         <div id="particles-3" class="particles"></div>
     </div>
 
-    <header class="site-header">
+    <header class="site-header fade-in-element" style="animation-delay: 0.2s;">
         <h1>City Explorer</h1>
-        <p>Your guide to India's most beautiful cities. Downloadable maps included!</p>
+        <p>A Visual Journey Through India's Vibrant Cities</p>
     </header>
 
     <main class="city-grid">
 
-        <div class="city-card">
+        <div class="city-card fade-in-element" style="animation-delay: 0.4s;">
             <div class="image-gallery">
-                <a href="https://en.wikipedia.org/wiki/Hawa_Mahal" target="_blank">
-                    <img src="hawa.png" alt="Hawa Mahal in Jaipur">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Amber_Fort" target="_blank">
-                    <img src="amer.png" alt="Amer Fort in Jaipur">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/City_Palace,_Jaipur" target="_blank">
-                    <img src="citypalace.png" alt="City Palace in Jaipur">
-                </a>
+                <a href="https://en.wikipedia.org/wiki/Hawa_Mahal" target="_blank"><img src="hawa.png" alt="Hawa Mahal in Jaipur"></a>
+                <a href="https://en.wikipedia.org/wiki/Amber_Fort" target="_blank"><img src="amer.png" alt="Amer Fort in Jaipur"></a>
+                <a href="https://en.wikipedia.org/wiki/City_Palace,_Jaipur" target="_blank"><img src="citypalace.png" alt="City Palace in Jaipur"></a>
             </div>
             <div class="card-content">
                 <h2>Jaipur, Rajasthan</h2>
@@ -233,21 +248,15 @@
                     <strong>Local Foods:</strong> Dal Baati Churma, Ghewar.<br>
                     <strong>Emergency Contacts:</strong> Police (100), Ambulance (102).
                 </p>
-                <a href="maps/jaipur-map.pdf" class="download-btn" download>Download Map (PDF)</a>
+                <a href="#" class="download-btn" download>Download Guide</a>
             </div>
         </div>
 
-        <div class="city-card">
+        <div class="city-card fade-in-element" style="animation-delay: 0.6s;">
             <div class="image-gallery">
-               <a href="https://en.wikipedia.org/wiki/India_Gate" target="_blank">
-                   <img src="gate.jpg" alt="First place in Delhi">
-               </a>
-               <a href="https://en.wikipedia.org/wiki/Qutb_Minar" target="_blank">
-                   <img src="qutub.jpg" alt="Second place in Delhi">
-               </a>
-               <a href="https://en.wikipedia.org/wiki/Humayun's_Tomb" target="_blank">
-                   <img src="humyu.jpg" alt="Third place in Delhi">
-               </a>
+                <a href="https://en.wikipedia.org/wiki/India_Gate" target="_blank"><img src="gate.jpg" alt="India Gate in Delhi"></a>
+                <a href="https://en.wikipedia.org/wiki/Qutb_Minar" target="_blank"><img src="qutub.jpg" alt="Qutub Minar in Delhi"></a>
+                <a href="https://en.wikipedia.org/wiki/Humayun's_Tomb" target="_blank"><img src="humyu.jpg" alt="Humayun's Tomb in Delhi"></a>
             </div>
             <div class="card-content">
                 <h2>New Delhi, Delhi</h2>
@@ -256,21 +265,15 @@
                     <strong>Local Foods:</strong> Chole Bhature, Parathas.<br>
                     <strong>Emergency Contacts:</strong> Police (100), Ambulance (102).
                 </p>
-                <a href="maps/delhi-map.pdf" class="download-btn" download>Download Map (PDF)</a>
+                <a href="#" class="download-btn" download>Download Guide</a>
             </div>
         </div>
 
-        <div class="city-card">
+        <div class="city-card fade-in-element" style="animation-delay: 0.8s;">
             <div class="image-gallery">
-                <a href="https://en.wikipedia.org/wiki/Gateway_of_India" target="_blank">
-                    <img src="gateway of india.jpg" alt="First place in Mumbai">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Marine_Drive,_Mumbai" target="_blank">
-                    <img src="marnie.jpg" alt="Second place in Mumbai">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Elephanta_Caves" target="_blank">
-                    <img src="elephanta.jpg" alt="Third place in Mumbai">
-                </a>
+                <a href="https://en.wikipedia.org/wiki/Gateway_of_India" target="_blank"><img src="gateway of india.jpg" alt="Gateway of India in Mumbai"></a>
+                <a href="https://en.wikipedia.org/wiki/Marine_Drive,_Mumbai" target="_blank"><img src="marnie.jpg" alt="Marine Drive in Mumbai"></a>
+                <a href="https://en.wikipedia.org/wiki/Elephanta_Caves" target="_blank"><img src="elephanta.jpg" alt="Elephanta Caves in Mumbai"></a>
             </div>
             <div class="card-content">
                 <h2>Mumbai, Maharashtra</h2>
@@ -279,21 +282,15 @@
                     <strong>Local Foods:</strong> Vada Pav, Pav Bhaji.<br>
                     <strong>Emergency Contacts:</strong> Police (100), Ambulance (108).
                 </p>
-                <a href="maps/mumbai-map.pdf" class="download-btn" download>Download Map (PDF)</a>
+                <a href="#" class="download-btn" download>Download Guide</a>
             </div>
         </div>
 
-        <div class="city-card">
+        <div class="city-card fade-in-element" style="animation-delay: 1.0s;">
             <div class="image-gallery">
-                <a href="https://en.wikipedia.org/wiki/Charminar" target="_blank">
-                    <img src="charminar.jpg" alt="First place in Hyderabad">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Golconda" target="_blank">
-                    <img src="golconda.jpg" alt="Second place in Hyderabad">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Hussain_Sagar" target="_blank">
-                    <img src="hussain.jpg" alt="Third place in Hyderabad">
-                </a>
+                <a href="https://en.wikipedia.org/wiki/Charminar" target="_blank"><img src="charminar.jpg" alt="Charminar in Hyderabad"></a>
+                <a href="https://en.wikipedia.org/wiki/Golconda" target="_blank"><img src="golconda.jpg" alt="Golconda Fort in Hyderabad"></a>
+                <a href="https://en.wikipedia.org/wiki/Hussain_Sagar" target="_blank"><img src="hussain.jpg" alt="Hussain Sagar in Hyderabad"></a>
             </div>
             <div class="card-content">
                 <h2>Hyderabad, Telangana</h2>
@@ -302,21 +299,15 @@
                     <strong>Local Foods:</strong> Hyderabadi Biryani, Haleem.<br>
                     <strong>Emergency Contacts:</strong> Police (100), Ambulance (108).
                 </p>
-                <a href="maps/hyderabad-map.pdf" class="download-btn" download>Download Map (PDF)</a>
+                <a href="#" class="download-btn" download>Download Guide</a>
             </div>
         </div>
 
-        <div class="city-card">
+        <div class="city-card fade-in-element" style="animation-delay: 1.2s;">
             <div class="image-gallery">
-               <a href="https://en.wikipedia.org/wiki/Marina_Beach" target="_blank">
-                   <img src="marina.jpg" alt="First place in Chennai">
-               </a>
-               <a href="https://en.wikipedia.org/wiki/Fort_St._George,_India" target="_blank">
-                   <img src="fort st.jpg" alt="Second place in Chennai">
-               </a>
-               <a href="https://en.wikipedia.org/wiki/Kapaleeshwarar_Temple" target="_blank">
-                   <img src="kapaleshwara.jpg" alt="Third place in Chennai">
-               </a>
+                <a href="https://en.wikipedia.org/wiki/Marina_Beach" target="_blank"><img src="marina.jpg" alt="Marina Beach in Chennai"></a>
+                <a href="https://en.wikipedia.org/wiki/Fort_St._George,_India" target="_blank"><img src="fort st.jpg" alt="Fort St. George in Chennai"></a>
+                <a href="https://en.wikipedia.org/wiki/Kapaleeshwarar_Temple" target="_blank"><img src="kapaleshwara.jpg" alt="Kapaleeshwarar Temple in Chennai"></a>
             </div>
             <div class="card-content">
                 <h2>Chennai, Tamil Nadu</h2>
@@ -325,21 +316,15 @@
                     <strong>Local Foods:</strong> Dosa, Filter Coffee.<br>
                     <strong>Emergency Contacts:</strong> Police (100), Ambulance (108).
                 </p>
-                <a href="maps/chennai-map.pdf" class="download-btn" download>Download Map (PDF)</a>
+                <a href="#" class="download-btn" download>Download Guide</a>
             </div>
         </div>
 
-        <div class="city-card">
+        <div class="city-card fade-in-element" style="animation-delay: 1.4s;">
             <div class="image-gallery">
-                <a href="https://en.wikipedia.org/wiki/Howrah_Bridge" target="_blank">
-                    <img src="howrah.jpg" alt="First place in Kolkata">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Victoria_Memorial,_Kolkata" target="_blank">
-                    <img src="victoria.jpg" alt="Second place in Kolkata">
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Dakshineswar_Kali_Temple" target="_blank">
-                    <img src="2daksh.jpg" alt="Third place in Kolkata">
-                </a>
+                <a href="https://en.wikipedia.org/wiki/Howrah_Bridge" target="_blank"><img src="howrah.jpg" alt="Howrah Bridge in Kolkata"></a>
+                <a href="https://en.wikipedia.org/wiki/Victoria_Memorial,_Kolkata" target="_blank"><img src="victoria.jpg" alt="Victoria Memorial in Kolkata"></a>
+                <a href="https://en.wikipedia.org/wiki/Dakshineswar_Kali_Temple" target="_blank"><img src="2daksh.jpg" alt="Dakshineswar Kali Temple in Kolkata"></a>
             </div>
             <div class="card-content">
                 <h2>Kolkata, West Bengal</h2>
@@ -348,15 +333,50 @@
                     <strong>Local Foods:</strong> Rosogolla, Fish Curry.<br>
                     <strong>Emergency Contacts:</strong> Police (100), Ambulance (102).
                 </p>
-                <a href="maps/kolkata-map.pdf" class="download-btn" download>Download Map (PDF)</a>
+                <a href="#" class="download-btn" download>Download Guide</a>
             </div>
         </div>
-
     </main>
     
-    <div class="back-link-container">
-        <a href="../city explorerUI.html" class="back-link">Return to Welcome Page</a>
+    <div class="back-link-container fade-in-element" style="animation-delay: 1.6s;">
+        <a href="#" class="back-link">Return to Welcome Page</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.city-card');
+
+            const handleMove = (e) => {
+                const card = e.currentTarget;
+                const { clientX, clientY } = e;
+                const { left, top, width, height } = card.getBoundingClientRect();
+                
+                const x = clientX - left - width / 2;
+                const y = clientY - top - height / 2;
+
+                const rotateX = (y / height) * -20;
+                const rotateY = (x / width) * 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            };
+
+            const handleLeave = (e) => {
+                const card = e.currentTarget;
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            };
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', handleMove);
+                card.addEventListener('mouseleave', handleLeave);
+            });
+
+            const particles = document.querySelectorAll('.particles');
+            particles.forEach(p => {
+                const randomDelay = -Math.random() * 50;
+                p.style.animationDelay = `${randomDelay}s`;
+            });
+        });
+    </script>
 
 </body>
 </html>
