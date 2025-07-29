@@ -6,6 +6,16 @@
     <title>City Explorer - Dark Theme</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <style>
+        /* Keyframes for the smoother fade-in animation */
+        @keyframes appear {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
         /* Keyframes for the particle animation */
         @keyframes animate-particles {
             from { transform: translateY(0); }
@@ -17,7 +27,7 @@
             font-family: 'Montserrat', Arial, sans-serif;
             background: #121212;
             color: #e0e0e0;
-            overflow-x: hidden; /* Prevent horizontal scrollbars */
+            overflow-x: hidden;
         }
 
         /* Particle Animation Styles */
@@ -28,6 +38,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            animation: appear 3s ease-out; /* Fade in the background */
         }
         .particles {
             position: absolute;
@@ -78,6 +89,12 @@
             margin: 0 auto;
         }
         .city-card {
+            /* Smoother fade-in animation on scroll */
+            animation: appear 1s linear;
+            animation-timeline: view();
+            animation-range: entry 0% cover 40%;
+            transform: translateY(0);
+            
             background: rgba(30, 30, 30, 0.8);
             backdrop-filter: blur(5px);
             border-radius: 1.2rem;
@@ -338,7 +355,7 @@
     </main>
     
     <div class="back-link-container">
-        <a href="../city explorerUI.html" class="back-link">Return to Welcome Page</a>
+        <a href="landing.html" class="back-link">Return to Welcome Page</a>
     </div>
 
 </body>
