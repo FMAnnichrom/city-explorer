@@ -3,34 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India's Cuisines & Festivals</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <title>India's Cuisines & Festivals - A Cultural Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Keyframes for the particle animation */
         @keyframes animate-particles {
             from { transform: translateY(0); }
             to { transform: translateY(-100vh); }
         }
 
-        /* Keyframes for the scroll-triggered card animation (smoother fade) */
-        @keyframes appear {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         body {
             margin: 0;
-            font-family: 'Montserrat', Arial, sans-serif;
-            background: #121212;
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
             color: #e0e0e0;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Particle Animation Styles */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -38,6 +33,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
         }
         .particles {
             position: absolute;
@@ -47,24 +43,23 @@
             left: 0;
         }
         #particles-1 {
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0.5px, transparent 1px);
-            background-size: 2rem 2rem;
-            animation: animate-particles 40s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1.5px);
+            background-size: 3rem 3rem;
+            animation: animate-particles 50s linear infinite;
         }
         #particles-2 {
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0.5px, transparent 1px);
-            background-size: 3.5rem 3.5rem;
-            animation: animate-particles 30s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1.5px);
+            background-size: 5rem 5rem;
+            animation: animate-particles 35s linear infinite;
         }
         #particles-3 {
-            background: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1.5px);
-            background-size: 5rem 5rem;
-            animation: animate-particles 20s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 2px);
+            background-size: 7rem 7rem;
+            animation: animate-particles 25s linear infinite;
         }
 
-        /* Main Content Styles */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -77,102 +72,139 @@
         
         .page-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
         }
 
         .page-header h1 {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
+            font-weight: 700;
             color: #fff;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            animation: float 6s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         .page-header p {
-            font-size: 1.1rem;
-            color: #a0a0a0;
-            max-width: 700px;
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 750px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
             color: #fff;
             text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #555;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #444;
             padding-bottom: 1rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #00BFFF;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
         }
 
         .item-card {
-            /* Smoother fade-in animation on scroll */
-            animation: appear 1s linear;
-            animation-timeline: view();
-            animation-range: entry 0% cover 40%;
-            transform: translateY(0); /* Ensure no vertical shift */
-            
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(5px);
-            border: 1px solid #333;
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid #2a2a2a;
             border-radius: 1rem;
             overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
+        
         .card-link-wrapper:hover .item-card {
-            transform: translateY(-8px);
-            border-color: #555;
+            transform: translateY(-12px) scale(1.04);
+            border-color: #777;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(119, 119, 119, 0.3);
         }
 
         .item-card img {
             width: 100%;
-            height: 220px;
+            height: 240px;
             object-fit: cover;
+            filter: grayscale(40%) brightness(0.9);
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        .card-link-wrapper:hover .item-card img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.05);
         }
         
         .item-card-content {
             padding: 1.5rem;
+            flex-grow: 1;
         }
 
         .item-card h3 {
             margin-top: 0;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #fff;
+            font-weight: 600;
         }
 
         .item-card p {
             font-size: 1rem;
-            line-height: 1.6;
-            color: #a0a0a0;
+            line-height: 1.7;
+            color: #b0b0b0;
         }
 
-        /* Back Button Styles */
         .back-link-container {
             text-align: center;
             margin-top: 2rem;
+            padding-bottom: 2rem;
         }
         .back-link {
-            background: #333;
+            background: #222;
             color: #e0e0e0;
-            padding: 0.8rem 1.5rem;
-            border-radius: 2rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            border: 1px solid #555;
-            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
         }
         .back-link:hover {
-            transform: translateY(-2px);
-            background-color: #f4f4f4;
+            transform: translateY(-3px) scale(1.05);
+            background-color: #fff;
             color: #121212;
+            box-shadow: 0 8px 15px rgba(255,255,255,0.2);
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
     </style>
@@ -186,24 +218,24 @@
     </div>
 
     <div class="container">
-        <header class="page-header">
+        <header class="page-header hidden">
             <h1>India's Cuisines & Festivals</h1>
             <p>Explore the rich tapestry of India's culinary delights and vibrant festivals. From spicy street foods to sweet treats, discover the flavors and celebrations that define a culture.</p>
         </header>
 
         <section id="cuisines">
-            <h2 class="section-title">Famous Cuisines of India</h2>
+            <h2 class="section-title hidden">Famous Cuisines of India</h2>
             <div class="grid">
-                <a href="https://en.wikipedia.org/wiki/North_Indian_cuisine" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/North_Indian_cuisine" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
-                        <img src="food images/image.png" alt="North Indian Thali">
+                        <img src="food images/north.png" alt="North Indian Thali">
                         <div class="item-card-content">
                             <h3>North Indian</h3>
                             <p>Known for its rich curries, tandoori meats, and breads like naan and roti. Dishes like Butter Chicken and Paneer Tikka are world-famous.</p>
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/South_Indian_cuisine" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/South_Indian_cuisine" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="food images/south.png" alt="South Indian Dosa">
                         <div class="item-card-content">
@@ -212,7 +244,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Bengali_cuisine" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Bengali_cuisine" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="food images/bengali.png" alt="Bengali Fish Curry">
                         <div class="item-card-content">
@@ -221,7 +253,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Rajasthani_cuisine" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Rajasthani_cuisine" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="food images/rajasthani.png" alt="Rajasthani Thali">
                         <div class="item-card-content">
@@ -230,7 +262,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Punjabi_cuisine" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Punjabi_cuisine" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="food images/panjabi.png" alt="Punjabi food including Chole Bhature">
                         <div class="item-card-content">
@@ -239,7 +271,7 @@
                         </div>
                     </div>
                 </a>
-                 <a href="https://en.wikipedia.org/wiki/Gujarati_cuisine" target="_blank" class="card-link-wrapper">
+                 <a href="https://en.wikipedia.org/wiki/Gujarati_cuisine" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="food images/gujarati.png" alt="Gujarati Thali with various dishes">
                         <div class="item-card-content">
@@ -252,9 +284,9 @@
         </section>
 
         <section id="festivals">
-            <h2 class="section-title">Vibrant Festivals of India</h2>
+            <h2 class="section-title hidden">Vibrant Festivals of India</h2>
             <div class="grid">
-                <a href="https://en.wikipedia.org/wiki/Diwali" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Diwali" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="festive/diwali.png" alt="People celebrating Diwali with lights">
                         <div class="item-card-content">
@@ -263,7 +295,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Holi" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Holi" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="festive/holi.png" alt="People playing with colored powders during Holi">
                         <div class="item-card-content">
@@ -272,7 +304,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Eid_al-Fitr" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Eid_al-Fitr" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="festive/eid.png" alt="A mosque decorated for Eid">
                         <div class="item-card-content">
@@ -281,7 +313,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Navaratri" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Navaratri" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="festive/navr.png" alt="Dandia dance during Navaratri">
                         <div class="item-card-content">
@@ -290,7 +322,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Ganesh_Chaturthi" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Ganesh_Chaturthi" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="festive/ganeshji.png" alt="An idol of Lord Ganesha for Ganesh Chaturthi">
                         <div class="item-card-content">
@@ -299,7 +331,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="https://en.wikipedia.org/wiki/Onam" target="_blank" class="card-link-wrapper">
+                <a href="https://en.wikipedia.org/wiki/Onam" target="_blank" class="card-link-wrapper hidden">
                     <div class="item-card">
                         <img src="festive/onam.png" alt="A flower carpet (Pookalam) for the festival of Onam">
                         <div class="item-card-content">
@@ -311,10 +343,38 @@
             </div>
         </section>
 
-        <div class="back-link-container">
+        <div class="back-link-container hidden">
             <a href="city explorerUI.html" class="back-link">Back to City Explorer UI</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add a staggered delay based on the element's order in the DOM
+                        entry.target.style.transitionDelay = `${index * 100}ms`;
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            // Observe all elements with the 'hidden' class
+            const hiddenElements = document.querySelectorAll('.hidden');
+            hiddenElements.forEach(el => observer.observe(el));
+
+            // Randomize particle animation start
+            const particles = document.querySelectorAll('.particles');
+            particles.forEach(p => {
+                const randomDelay = -Math.random() * 50;
+                p.style.animationDelay = `${randomDelay}s`;
+            });
+        });
+    </script>
 
 </body>
 </html>
