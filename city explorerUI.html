@@ -11,6 +11,18 @@
             from { transform: translateY(0); }
             to { transform: translateY(-100vh); }
         }
+        
+        /* Keyframes for the fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         body {
             margin: 0;
@@ -28,12 +40,14 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            /* Fade-in animation for the background */
+            animation: fadeIn 3s ease-out;
         }
         
         .particles {
             position: absolute;
             width: 100%;
-            height: 200%; /* Set to 200% for seamless loop */
+            height: 200%; 
             top: 0;
             left: 0;
         }
@@ -54,7 +68,6 @@
         }
         /* End of Animation Styles */
 
-        /* Centered Content Styles */
         .landing-container {
             display: flex;
             flex-direction: column;
@@ -64,12 +77,14 @@
             text-align: center;
             padding: 1rem;
         }
-
+        
+        /* Applying staggered fade-in animations to the text and buttons */
         h1 {
             font-size: 3.5rem;
             color: #fff;
             letter-spacing: 2px;
             margin-bottom: 1rem;
+            animation: fadeIn 0.8s ease-out 0.5s both; /* Delay of 0.5s */
         }
 
         p {
@@ -77,17 +92,18 @@
             color: #a0a0a0;
             max-width: 600px;
             margin-bottom: 2.5rem;
+            animation: fadeIn 0.8s ease-out 0.8s both; /* Delay of 0.8s */
         }
-
-        /* --- UNIFIED BUTTON STYLES --- */
+        
         .button-container {
             display: flex;
             justify-content: center;
-            gap: 1.5rem; /* Consistent spacing between buttons */
+            gap: 1.5rem; 
+            animation: fadeIn 0.8s ease-out 1.1s both; /* Delay of 1.1s */
         }
 
         .btn {
-            min-width: 220px; /* Ensures both buttons have the same minimum width */
+            min-width: 220px;
             padding: 1rem 2rem;
             border-radius: 3rem;
             text-decoration: none;
@@ -96,16 +112,14 @@
             letter-spacing: 1px;
             border: 1px solid #555;
             text-align: center;
-            /* Immersive transition */
             transition: transform 0.3s ease, box-shadow 0.3s ease, letter-spacing 0.3s ease, background-color 0.3s ease;
         }
 
         .btn:hover {
             transform: translateY(-5px) scale(1.05);
-            letter-spacing: 2px; /* Text expands on hover */
+            letter-spacing: 2px;
         }
         
-        /* Specific styles for each button */
         .enter-btn {
             background: #f4f4f4;
             color: #121212;
