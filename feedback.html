@@ -31,6 +31,17 @@
                 opacity: 0;
             }
         }
+        
+        @keyframes thumbs-down-fall {
+            0% {
+                transform: translateY(-10vh) rotateZ(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotateZ(-360deg);
+                opacity: 0;
+            }
+        }
 
         body {
             margin: 0;
@@ -254,7 +265,7 @@
             transform: translateY(0);
         }
         
-        #confetti-container {
+        #confetti-container, #thumbs-down-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -270,12 +281,19 @@
             opacity: 0;
             animation: confetti-fall 3s ease-out forwards;
         }
+        .thumbs-down {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: thumbs-down-fall 3s ease-in forwards;
+        }
 
     </style>
 </head>
 <body>
 
     <div id="confetti-container"></div>
+    <div id="thumbs-down-container"></div>
 
     <div class="bg-animation">
         <div id="particles-1" class="particles"></div>
@@ -317,7 +335,7 @@
                 <button type="submit" class="submit-btn">Submit Feedback</button>
             </form>
         </div>
-        <a href="city explorerUI.html" class="back-link hidden">← Back to City Explorer</a>
+        <a href="city xplorerUI.html" class="back-link hidden">← Back to City Explorer</a>
     </div>
 
     <script>
@@ -368,6 +386,7 @@
                     if (rating == 1) {
                         ratingGroup.classList.add('rating-poor');
                         ratingFeedback.classList.add('rating-poor');
+                        launchThumbsDown();
                     } else if (rating == 2) {
                         ratingGroup.classList.add('rating-fair');
                         ratingFeedback.classList.add('rating-fair');
@@ -446,9 +465,26 @@
                     }, 3000);
                 }
             }
+
+            function launchThumbsDown() {
+                const container = document.getElementById('thumbs-down-container');
+                for (let i = 0; i < 50; i++) {
+                    const thumb = document.createElement('div');
+                    thumb.classList.add('thumbs-down');
+                    thumb.textContent = '👎';
+                    thumb.style.left = `${Math.random() * 100}vw`;
+                    thumb.style.animationDelay = `${Math.random() * 0.5}s`;
+                    const randomHue = Math.floor(Math.random() * 360);
+                    thumb.style.filter = `hue-rotate(${randomHue}deg)`;
+                    container.appendChild(thumb);
+
+                    setTimeout(() => {
+                        thumb.remove();
+                    }, 3000);
+                }
+            }
         });
     </script>
 
 </body>
 </html>
-
