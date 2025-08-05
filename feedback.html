@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - India's Cuisines & Festivals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes animate-particles {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100vh); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes contentFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10vh) rotateZ(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 200vh;
+            top: 0;
+            left: 0;
+        }
+        #particles-1 {
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1.5px);
+            background-size: 3rem 3rem;
+            animation: animate-particles 50s linear infinite;
+        }
+        #particles-2 {
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1.5px);
+            background-size: 5rem 5rem;
+            animation: animate-particles 35s linear infinite;
+        }
+        #particles-3 {
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 2px);
+            background-size: 7rem 7rem;
+            animation: animate-particles 25s linear infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            animation: float 6s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .feedback-form-container {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid #2a2a2a;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: #b0b0b0;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input.invalid,
+        .form-group textarea.invalid {
+            border-color: #e74c3c;
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00BFFF;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+        }
+
+        .rating-group {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+            position: relative;
+        }
+        .rating-group input[type="radio"] {
+            display: none;
+        }
+        .rating-group label {
+            font-size: 2.5rem;
+            color: #444;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+            padding: 0 0.2rem;
+        }
+        .rating-group.rating-poor label:hover,
+        .rating-group.rating-poor label:hover ~ label,
+        .rating-group.rating-poor input[type="radio"]:checked ~ label { color: #e74c3c; }
+
+        .rating-group.rating-fair label:hover,
+        .rating-group.rating-fair label:hover ~ label,
+        .rating-group.rating-fair input[type="radio"]:checked ~ label { color: #f39c12; }
+
+        .rating-group.rating-good label:hover,
+        .rating-group.rating-good label:hover ~ label,
+        .rating-group.rating-good input[type="radio"]:checked ~ label { color: #ffc107; }
+
+        .rating-group label:hover {
+            transform: scale(1.2);
+        }
+        
+        .rating-feedback {
+            font-weight: 600;
+            margin-left: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+        .rating-feedback.rating-poor { color: #e74c3c; }
+        .rating-feedback.rating-fair { color: #f39c12; }
+        .rating-feedback.rating-good { color: #ffc107; }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00BFFF, #007BFF);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 191, 255, 0.3);
+        }
+        
+        .success-message {
+            text-align: center;
+            animation: contentFadeIn 0.5s ease-out forwards;
+        }
+        .success-message h2 {
+            font-size: 2.5rem;
+            color: #00BFFF;
+            margin-bottom: 1rem;
+        }
+        .success-message p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            opacity: 0;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="confetti-container"></div>
+
+    <div class="bg-animation">
+        <div id="particles-1" class="particles"></div>
+        <div id="particles-2" class="particles"></div>
+        <div id="particles-3" class="particles"></div>
+    </div>
+
+    <div class="container">
+        <div class="feedback-form-container hidden">
+            <header class="page-header">
+                <h1>Share Your Feedback</h1>
+            </header>
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div style="display: flex; align-items: center;">
+                        <div class="rating-group">
+                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                        </div>
+                        <span class="rating-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea id="comments" name="comments" placeholder="Tell us what you think..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </div>
+        <a href="cityexplorerUI.html" class="back-link hidden">← Back to City Explorer</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transitionDelay = `${index * 150}ms`;
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const hiddenElements = document.querySelectorAll('.hidden');
+            hiddenElements.forEach(el => observer.observe(el));
+
+            const particles = document.querySelectorAll('.particles');
+            particles.forEach(p => {
+                const randomDelay = -Math.random() * 50;
+                p.style.animationDelay = `${randomDelay}s`;
+            });
+
+            const form = document.getElementById('feedbackForm');
+            const formContainer = document.querySelector('.feedback-form-container');
+            const ratingGroup = document.querySelector('.rating-group');
+            const ratingStars = document.querySelectorAll('.rating-group input');
+            const ratingFeedback = document.querySelector('.rating-feedback');
+
+            const ratingText = {
+                1: 'Poor',
+                2: 'Fair',
+                3: 'Good',
+                4: 'Very Good',
+                5: 'Excellent!'
+            };
+
+            ratingStars.forEach(star => {
+                star.addEventListener('change', () => {
+                    const rating = star.value;
+                    ratingFeedback.textContent = ratingText[rating];
+                    
+                    ratingGroup.className = 'rating-group';
+                    ratingFeedback.className = 'rating-feedback';
+
+                    if (rating == 1) {
+                        ratingGroup.classList.add('rating-poor');
+                        ratingFeedback.classList.add('rating-poor');
+                    } else if (rating == 2) {
+                        ratingGroup.classList.add('rating-fair');
+                        ratingFeedback.classList.add('rating-fair');
+                    } else {
+                        ratingGroup.classList.add('rating-good');
+                        ratingFeedback.classList.add('rating-good');
+                    }
+
+                    ratingFeedback.style.opacity = '1';
+
+                    if (rating == 5) {
+                        launchConfetti();
+                    }
+                });
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                let isValid = true;
+
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const comments = document.getElementById('comments');
+                const rating = form.querySelector('input[name="rating"]:checked');
+
+                [name, email, comments].forEach(input => input.classList.remove('invalid'));
+
+                if (name.value.trim() === '') {
+                    name.classList.add('invalid');
+                    isValid = false;
+                }
+                
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email.value.trim() === '' || !emailPattern.test(email.value)) {
+                    email.classList.add('invalid');
+                    isValid = false;
+                }
+
+                if (comments.value.trim() === '') {
+                    comments.classList.add('invalid');
+                    isValid = false;
+                }
+
+                if (!rating) {
+                    document.querySelector('.rating-group').style.outline = '1px solid #e74c3c';
+                    isValid = false;
+                } else {
+                    document.querySelector('.rating-group').style.outline = 'none';
+                }
+
+                if (isValid) {
+                    formContainer.innerHTML = `
+                        <div class="success-message">
+                            <h2>Thank You!</h2>
+                            <p>Your feedback has been submitted successfully. We appreciate you taking the time to help us improve.</p>
+                        </div>
+                    `;
+                }
+            });
+
+            function launchConfetti() {
+                const confettiContainer = document.getElementById('confetti-container');
+                const colors = ['#00BFFF', '#FFD700', '#FF69B4', '#32CD32', '#FF4500'];
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                    confetti.style.transform = `rotateZ(${Math.random() * 360}deg)`;
+                    confettiContainer.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
