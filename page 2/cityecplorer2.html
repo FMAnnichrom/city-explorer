@@ -196,13 +196,16 @@
             box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
         }
         
-        .back-link-container {
+        .action-buttons-container {
             text-align: center;
             padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column; /* This stacks the buttons vertically */
+            align-items: center;
+            gap: 1.5rem;
         }
-        .back-link {
+        .action-btn {
             display: inline-block;
-            background: #222;
             color: #e0e0e0;
             padding: 1rem 2rem;
             border-radius: 50px;
@@ -210,12 +213,27 @@
             font-weight: 700;
             border: 1px solid #444;
             transition: all 0.3s ease;
+            min-width: 250px; /* Ensures buttons have a nice width */
         }
-        .back-link:hover {
+        .action-btn.back-link {
+             background: #222;
+        }
+        .action-btn.back-link:hover {
             transform: translateY(-3px) scale(1.05);
             background-color: #fff;
             color: #121212;
             box-shadow: 0 8px 15px rgba(255,255,255,0.2);
+        }
+        .action-btn.feedback-link {
+            background: #00BFFF;
+            border-color: #00BFFF;
+            color: #fff;
+        }
+        .action-btn.feedback-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: #fff;
+            color: #00BFFF;
+            box-shadow: 0 8px 15px rgba(0, 191, 255, 0.2);
         }
 
     </style>
@@ -339,8 +357,9 @@
         </div>
     </main>
     
-    <div class="back-link-container fade-in-element" style="animation-delay: 1.6s;">
-        <a href="../city explorerUI.html" class="back-link">Return to Welcome Page</a>
+    <div class="action-buttons-container fade-in-element" style="animation-delay: 1.6s;">
+        <a href="../cityexplorerUI.html" class="action-btn back-link">Return to Welcome Page</a>
+        <a href="../feedback.html" class="action-btn feedback-link">Leave Feedback</a>
     </div>
 
     <script>
@@ -381,5 +400,3 @@
 
 </body>
 </html>
-
-
